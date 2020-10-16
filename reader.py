@@ -3,8 +3,6 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-#Comment
-
 user = input('Please enter your Email: ')
 password = input('Please enter your Password: ')
 
@@ -13,7 +11,7 @@ browser.get('https://www.buzzsprout.com/')
 
 def log_in():
 
-    time.sleep(2)
+    time.sleep(5)
 
     find_log_in = browser.find_element_by_xpath('/html/body/header/nav/div/a[1]').click()
     time.sleep(2)
@@ -29,10 +27,10 @@ def log_in():
 def podcast_title():
 
     find_title = browser.find_element_by_xpath('/html/body/div[2]/div[2]/table/tbody/tr[1]/td[2]/div/a').click()
-    time.sleep(1)
+    time.sleep(2)
 
     find_edit_chapters = browser.find_element_by_xpath('//*[@id="main"]/div[2]/div[2]/div/div/strong/a').click()
-    time.sleep(1)
+    time.sleep(2)
 
     print("Opened the latest epsiode.")
 
@@ -47,17 +45,19 @@ def open_file():
             desc = line[space:]
             timestamp = line[:space]
 
+            print (f"Adding line: {line}")
+
             if len(timestamp) == 4:
-                timestamp = '0' + timestamp + ':00'
+                timestamp = '00:0' + timestamp
             elif len(timestamp) == 5:
-                timestamp = timestamp + ':00'
+                timestamp = '00:' + timestamp
             elif len(timestamp) == 7:
                 timestamp = '0' + timestamp
 
             add_new_chapter = browser.find_element_by_xpath('//*[@id="add_new_chapter"]').click()
 
             add_title = browser.find_element_by_xpath('/html/body/div[2]/div/div[2]/div[4]/div/div/fieldset/form/div[3]/input')
-            time.sleep(1)
+            time.sleep(2)
 
             add_title.send_keys(desc)
             time.sleep(1)
@@ -71,12 +71,12 @@ def open_file():
             add_timestamp.send_keys(timestamp)
 
             create_chapter = browser.find_element_by_xpath('//*[@id="chapter_new"]/div/fieldset/form/div[5]/input').click()
-            time.sleep(1)
+            time.sleep(2)
 
     save_update = browser.find_element_by_xpath('//*[@id="publish_chapters"]').click()
 
 log_in()
 podcast_title()
 open_file()
-print ('Upload successful.')
+print ('Upload successful!')
 print ('Your chapter markers have been uploaded.')
