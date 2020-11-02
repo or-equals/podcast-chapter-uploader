@@ -26,7 +26,7 @@ def log_in():
 
 def podcast_title():
 
-    find_title = browser.find_element_by_xpath('/html/body/div[2]/div[2]/table/tbody/tr[1]/td[2]/div/a').click()
+    find_title = browser.find_element_by_css_selector('.episode_status--not_live a').click()
     time.sleep(2)
 
     find_edit_chapters = browser.find_element_by_xpath('//*[@id="main"]/div[2]/div[2]/div/div/strong/a').click()
