@@ -26,7 +26,7 @@ def log_in():
 
 def podcast_title():
 
-    find_title = browser.find_element_by_css_selector('.episode_status--not_live a').click()
+    find_title = browser.find_element_by_css_selector('.episode--not_live a').click()
     time.sleep(2)
 
     find_edit_chapters = browser.find_element_by_xpath('//*[@id="main"]/div[2]/div[2]/div/div/strong/a').click()
@@ -56,13 +56,13 @@ def open_file():
 
             add_new_chapter = browser.find_element_by_xpath('//*[@id="add_new_chapter"]').click()
 
-            add_title = browser.find_element_by_xpath('/html/body/div[2]/div/div[2]/div[4]/div/div/fieldset/form/div[3]/input')
+            add_title = browser.find_element_by_css_selector('#new_chapter_form #chapter_title')
             time.sleep(2)
 
             add_title.send_keys(desc)
             time.sleep(1)
 
-            add_timestamp = browser.find_element_by_xpath('/html/body/div[2]/div/div[2]/div[4]/div/div/fieldset/form/div[2]/input')
+            add_timestamp = browser.find_element_by_css_selector('#new_chapter_form #chapter_start_time_string')
             time.sleep(1)
 
             add_timestamp.click()
@@ -70,7 +70,7 @@ def open_file():
             add_timestamp.click()
             add_timestamp.send_keys(timestamp)
 
-            create_chapter = browser.find_element_by_xpath('//*[@id="chapter_new"]/div/fieldset/form/div[5]/input').click()
+            create_chapter = browser.find_element_by_css_selector('#new_chapter_form .btn_create').click()
             time.sleep(2)
 
     save_update = browser.find_element_by_xpath('//*[@id="publish_chapters"]').click()
