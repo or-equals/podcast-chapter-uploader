@@ -1,5 +1,7 @@
 # Podcast Chapter Uploader
 
+This project depends on Python version 3.9.2
+
 ## Getting Started
 
 ```
